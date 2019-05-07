@@ -17,7 +17,7 @@ class CommandLine:
                                  required=False, default="")
         self.parser.add_argument("-c", "--category", type=str,
                                  help="Choose the category you wnat to group by (currently 'User' or "
-                                      "'Account')", required=False, default="")
+                                      "'Account')", default="User")
 
         self.argument = self.parser.parse_args()
         self.status = False
@@ -160,7 +160,7 @@ if __name__ == "__main__":
     print(app.argument)
     partition = app.argument.partition
     by_x = app.argument.category
-    accounting_filename = app.argument.file[0]
+    accounting_filename = app.argument.file
     accounting_data = pd.read_csv(accounting_filename, delimiter='|')
     accounting_data = include_batches_in_job(accounting_data)
     accounting_data = format_data(accounting_data)
